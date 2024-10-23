@@ -1,0 +1,41 @@
+{
+  "name": "quizhub-frontend-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emotion/cache": "^11.13.1",
+    "@emotion/react": "^11.13.3",
+    "@emotion/server": "^11.11.0",
+    "@emotion/styled": "^11.13.0",
+    "@mui/icons-material": "^6",
+    "@mui/material": "^6.0.1",
+    "@mui/material-nextjs": "^6",
+    "@next/env": "^14.2.13",
+    "@next/font": "^14.2.6",
+    "audit": "^0.0.6",
+    "fix": "^0.0.3",
+    "next": "^14.2.7",
+    "node": "^22.6.0",
+    "package.json": "^0.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "socket.io": "^4.7.5",
+    "socket.io-client": "^4.7.5"
+  },
+  "devDependencies": {
+    "@mui/material-nextjs": "^6",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.5",
+    "postcss": "^8",
+    "typescript": "^5"
+  }
+}
