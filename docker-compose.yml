@@ -1,0 +1,47 @@
+services:
+    postgresdb:
+        image: postgres:16.3
+        restart: unless-stopped
+        env_file: ./.env
+        environment:
+            - POSTGRES_USER=$POSTGRESDB_USER
+            - POSTGRES_PASSWORD=$POSTGRESDB_ROOT_PASSWORD
+            - POSTGRES_DB=$POSTGRESDB_DATABASE
+        ports:
+            - $POSTGRESDB_LOCAL_PORT:$POSTGRESDB_DOCKER_PORT
+        volumes:
+            - db:/var/lib/postgres
+    backend:
+        depends_on:
+            - postgresdb
+        build: ./backend
+        restart: on-failure
+        env_file: ./.env
+        ports:
+            - $SPRING_LOCAL_PORT:$SPRING_DOCKER_PORT
+            - $SOCKET_IO_LOCAL_PORT:$SOCKET_IO_DOCKER_PORT
+        environment:
+            SPRING_APPLICATION_JSON: '{
+                "spring.datasource.url"  : "jdbc:postgresql://postgresdb:$POSTGRESDB_DOCKER_PORT/$POSTGRESDB_DATABASE",
+                "spring.datasource.username" : "$POSTGRESDB_USER",
+                "spring.datasource.password" : "$POSTGRESDB_ROOT_PASSWORD",
+                "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.PostgreSQLDialect",
+                "spring.jpa.hibernate.ddl-auto" : "create-drop",
+                "spring.jpa.show-sql" : "true",
+                "spring.jpa.hibernate.naming.implicit-strategy" : "org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl",
+                "spring.jpa.properties.hibernate.format_sql" : "true"
+            }'
+            socket-server.host: '0.0.0.0'
+            socket-server.port: $SOCKET_IO_DOCKER_PORT
+        volumes:
+            - .m2:/root/.m2
+        stdin_open: true
+        tty: true
+    frontend:
+        build:
+            context: ./frontend
+        env_file: ./.env
+        ports:
+            - $NEXT_LOCAL_PORT:$NEXT_DOCKER_PORT
+volumes:
+    db:
