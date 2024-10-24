@@ -18,7 +18,7 @@ Challenge each other, test your knowledge, and have fun!
 ## Technologies Used
 
 - **Backend**: Java Spring Boot
-- **Frontend**: Next.js, React, TypeScript
+- **Frontend**: Next.js, React, MaterialUI, TypeScript
 - **Database**: Spring Boot JPA, Postgresql
 - **Real-Time Communication**: Socket.IO
 - **Docker**: docker-compose
