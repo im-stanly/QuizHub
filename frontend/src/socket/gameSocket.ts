@@ -110,7 +110,6 @@ export const gameSocket = (room: string, username: string) => {
       console.log(res)
     })
   
-
     return () => {
       s.disconnect();
     };
