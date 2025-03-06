@@ -22,6 +22,7 @@ Challenge each other, test your knowledge, and have fun!
 - **Database**: Spring Boot JPA, Postgresql
 - **Real-Time Communication**: Socket.IO
 - **Docker**: docker-compose
+- **CI/CD**: GitHub Actions
 
 ## Getting Started
 
